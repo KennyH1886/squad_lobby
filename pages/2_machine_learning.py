@@ -70,7 +70,6 @@ st.write("### Predicted vs Actual Rent Values Visualization")
 
 plt.figure(figsize=(10, 6))
 plt.plot(y_test.values, label='Actual Rent', marker='o', linestyle='-', color='blue')
-plt.plot(y_pred_linear, label='Predicted Rent (Linear Regression)', marker='x', linestyle='--', color='green')
 plt.plot(y_pred_rf, label='Predicted Rent (Random Forest)', marker='s', linestyle=':', color='red')
 plt.xlabel("Data Point Index")
 plt.ylabel("Rent")
