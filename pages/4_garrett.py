@@ -22,7 +22,7 @@ key = os.getenv("openai_api_key_squal_lobby")
 client = OpenAI(api_key=key)
 
 st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
-st.header("Scenario One: GHOE Cruise 2025", divider = 'red')
+st.header("Scenario Two: Buying the New TV", divider = 'red')
 
 with st.spinner("Generating scenario..."):
     chat_completion = client.chat.completions.create(
@@ -33,7 +33,7 @@ with st.spinner("Generating scenario..."):
             },
             {
                 "role": "user",
-                "content": f"there is a greatest homecoming on earth cruise happening at an hbcu and a student wants to budget his trip but usually spends all their money partying but really wants ot take this senior trip. Please give a great scenario for this with emojis. dont give budgetary advice just describe a very enticing advice for instant gradificaiton versus delayed , make it very hard for the student to choose"
+                "content": f"there is a TV that just went on sale at BestBuy that I've really wanted it for a long time. Rent is due in couple days which is very important but I really want to watch the superbowl on my brand new TV before it goes back to regular price. Please give a great scenario for this with emojis. dont give budgetary advice just describe a very enticing advice for instant gradificaiton versus delayed , make it very hard for the student to choose"
             }
         ],
         model="gpt-4o-mini",
