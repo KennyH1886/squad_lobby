@@ -22,9 +22,20 @@ key = os.getenv("openai_api_key_squal_lobby")
 client = OpenAI(api_key=key)
 
 st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
-st.header("Budget One", divider = 'red')
+st.header("Scenario One", divider = 'red')
 
-st.image('squad-lobby-logo3.png')
+response = client.images.generate(
+        model="dall-e-3",
+        prompt=f"generate an image for a captial one cs hackathon, depicting a diverse CS college student trying to decide how to spend or save money, decide between instant and delayed gratification. just captial one and ncat logos, no other text",
+        size="1024x1024",
+        quality="standard",
+        n=1,
+        )
+image_url = response.data[0].url
+st.image(image_url)
+
+
+# st.image('squad-lobby-logo3.png')
 
 question = st.text_input("Ask your questions for budget help!")
 if st.button("Submit"):
