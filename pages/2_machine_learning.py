@@ -59,10 +59,6 @@ rf_model.fit(X_train, y_train)
 y_pred_rf = rf_model.predict(X_test)
 mse_rf = mean_squared_error(y_test, y_pred_rf)
 
-# Display the Mean Squared Error for each model
-st.write("#### Mean Squared Error")
-st.write(f"Linear Regression Model: {mse_linear}")
-st.write(f"Random Forest Model: {mse_rf}")
 
 # Display predicted vs actual values for Random Forest model
 result_df = pd.DataFrame({"Actual Rent": y_test,  "Predicted Rent (Random Forest)": y_pred_rf})
