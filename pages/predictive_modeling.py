@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Sample data
@@ -20,7 +20,6 @@ data = {
 # Convert to DataFrame
 df = pd.DataFrame(data)
 
-# Streamlit app
 st.title("Predictive Analysis on Monthly Budget Data")
 
 st.write("""
@@ -32,22 +31,18 @@ st.write("### Monthly Budget Data")
 st.write("Here’s the dataset we’ll use for our analysis. Each column represents a category of expenses over a 12-month period.")
 st.dataframe(df)
 
+# Feature engineering: shift rent to create a "previous rent" column for time-series forecasting
+df['Previous_Rent'] = df['Rent'].shift(1)
+df = df.dropna()  # Drop rows with missing values due to shifting
+
 st.write("""
 ### Step 1: Data Preparation
-To prepare the data for predictive modeling, we need to:
-- **Select a Target Variable**: In this example, we’ll use "Rent" as the target we want to predict.
-- **Select Features**: We’ll use other categories such as "Groceries", "Books", "Entertainment", etc., as features that may help predict rent.
-- **Split the Data**: We’ll divide the data into training and testing sets to evaluate the model’s accuracy.
+To prepare the data for predictive modeling, we add a new feature 'Previous Rent' which represents the rent value from the previous month. This will help in capturing any potential trend in rent across months.
 """)
 
-# Select features and target variable
+# Select features including previous rent as a predictor for future rent
 X = df.drop(columns=["Month", "Rent"])
 y = df["Rent"]
-
-st.write("### Step 2: Splitting the Data")
-st.write("""
-We split the data into training and testing sets. The training set will be used to train the model, while the testing set will evaluate its accuracy.
-""")
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
@@ -57,16 +52,16 @@ st.write(f"**Testing Set Size**: {X_test.shape[0]} samples")
 
 st.write("""
 ### Step 3: Model Selection and Training
-We use a simple **Linear Regression** model for this predictive task. Linear regression is a straightforward and commonly used method for predicting a continuous target variable by finding the linear relationship between the target and the features.
+We use a **Random Forest Regressor** for this predictive task. Random forests are a more advanced model choice, capturing complex relationships within data by averaging predictions across many decision trees.
 """)
 
-# Train the model
-model = LinearRegression()
+# Train Random Forest model for time-series predictive analysis
+model = RandomForestRegressor(n_estimators=100, random_state=0)
 model.fit(X_train, y_train)
 
 st.write("""
 ### Step 4: Making Predictions
-Once the model is trained, we can use it to make predictions on the testing set. These predictions will give us an idea of how well the model has learned the patterns in the data.
+Once the model is trained, we can use it to make predictions on the testing set. This will help us understand the accuracy of the model in predicting rent values.
 """)
 
 # Make predictions
@@ -74,9 +69,9 @@ y_pred = model.predict(X_test)
 
 st.write("### Step 5: Model Evaluation")
 st.write("""
-To evaluate the performance of our model, we use two metrics:
-- **Mean Squared Error (MSE)**: This metric shows the average squared difference between predicted and actual values. A lower MSE indicates better performance.
-- **R-Squared (R²)**: This metric indicates how well the features explain the variability of the target variable. An R² close to 1 implies a good fit.
+To evaluate the performance of our model, we use:
+- **Mean Squared Error (MSE)**: This metric shows the average squared difference between predicted and actual values.
+- **R-Squared (R²)**: This metric indicates how well the features explain the variability of the target variable.
 """)
 
 # Calculate evaluation metrics
@@ -89,12 +84,22 @@ st.write(f"**R-Squared (R²)**: {r2}")
 
 st.write("""
 ### Step 6: Predicted vs Actual Rent Values
-Here we compare the actual "Rent" values with the predicted values from our model. This comparison helps us visualize the model’s accuracy.
+Below, we compare the actual "Rent" values with the predicted values from our model.
 """)
 
 # Display predicted vs actual values
 result_df = pd.DataFrame({"Actual Rent": y_test, "Predicted Rent": y_pred})
 st.dataframe(result_df)
+
+st.write("""
+### Step 7: Forecasting Future Rent
+Using the trained model, we forecast the rent for the next month based on the latest data available.
+""")
+
+# Forecast for future months (extrapolate based on last row data)
+last_row = X.iloc[[-1]]
+forecast = model.predict(last_row)
+st.write(f"**Forecasted Rent for Next Month**: ${forecast[0]:.2f}")
 
 st.write("""
 ### Machine Learning Code
@@ -104,18 +109,22 @@ Below is the code used to perform this predictive analysis. You can use it as a 
 # Machine Learning Code Display
 code = '''
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 
-# Select features and target variable
+# Feature engineering: shift rent to create a "previous rent" column for time-series forecasting
+df['Previous_Rent'] = df['Rent'].shift(1)
+df = df.dropna()  # Drop rows with missing values due to shifting
+
+# Select features including previous rent as a predictor for future rent
 X = df.drop(columns=["Month", "Rent"])
 y = df["Rent"]
 
-# Split the data into training and testing sets
+# Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
-# Train the model
-model = LinearRegression()
+# Train Random Forest model
+model = RandomForestRegressor(n_estimators=100, random_state=0)
 model.fit(X_train, y_train)
 
 # Make predictions
@@ -125,14 +134,13 @@ y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
-# Display predicted vs actual values
-result_df = pd.DataFrame({"Actual Rent": y_test, "Predicted Rent": y_pred})
+# Forecast for future months
+last_row = X.iloc[[-1]]
+forecast = model.predict(last_row)
 '''
 st.code(code, language='python')
 
 st.write("""
 ### Conclusion
-This application demonstrated a basic predictive analysis using a linear regression model on monthly budget data. While this model is relatively simple, more advanced techniques and larger datasets can yield even more accurate predictions.
-
-Predictive modeling can provide valuable insights, helping students anticipate future expenses and make informed budgeting decisions.
+This application demonstrated predictive analysis using a Random Forest model on monthly budget data. The addition of a previous month’s rent as a feature helps improve model accuracy, enabling better insights for future budgeting.
 """)
