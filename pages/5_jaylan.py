@@ -42,8 +42,9 @@ if "image_url" not in st.session_state:
     st.session_state["image_url"] = response.data[0].url
 
 # Display the scenario and image from session state
-st.image(st.session_state["image_url"])
-st.markdown(st.session_state["scenario"])
+with st.spinner("Gathering scenario..."):
+    st.image(st.session_state["image_url"])
+    st.markdown(st.session_state["scenario"])
 
 
 # Get user input for scenario response
