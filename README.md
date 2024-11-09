@@ -32,6 +32,7 @@ response = client.images.generate(
 image_url = response.data[0].url
 print(image_url)
 ```
+![image](gameplay_image.png)
 # sample cs student income expense record 
 ```python
 import pandas as pd
