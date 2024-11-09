@@ -22,7 +22,7 @@ key = os.getenv("openai_api_key_squal_lobby")
 client = OpenAI(api_key=key)
 
 st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
-st.header("Budget Squad", divider = 'red')
+st.header("Budget One", divider = 'red')
 
 st.image('squad-lobby-logo3.png')
 
