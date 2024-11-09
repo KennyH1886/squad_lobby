@@ -24,7 +24,7 @@ client = OpenAI(api_key=key)
 st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
 st.header("Budget One", divider = 'red')
 
-st.image('squad-lobby-logo3.png')
+st.image('budgetonefin.png')
 
 question = st.text_input("Ask your questions for budget help!")
 if st.button("Submit"):
