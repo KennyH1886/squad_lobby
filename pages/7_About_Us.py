@@ -15,24 +15,16 @@ st.write("""
 
 - **Sandia National Laboratories** - R&D Software Engineer & Data Science Focus  
   _May 2024 - Present (7 months), Albuquerque, New Mexico_  
-  Internship role focused on R&D with an emphasis on data science projects.
+  Internship role focused on R&D with an emphasis on data science projects and AI development, including integration with OpenAI SDK and model training using GPT-4o-mini.
 
 - **Harris Teeter** - Fresh Foods Associate  
   _June 2023 - Aug 2023 (3 months), Fayetteville, North Carolina_  
   Provided customer service, completed deli orders, and collaborated with a diverse team in a fast-paced environment.
 
-- **Snyder Memorial Baptist Church** - Maintenance Technician  
-  _July 2019 - Mar 2023 (3 years, 9 months)_  
-  Managed building cleanliness, security, and supported event preparations.
-
-- **Dorothy's Catering** - Caterer  
-  _Jan 2020 - Jan 2022 (2 years, 1 month), Fayetteville, North Carolina_  
-  Collaborated with a team to provide catering services, working closely with clients and handling event challenges.
-
-### Skills
+### AI & Technical Skills
+- OpenAI SDK, GPT-4o-mini, CI/CD, Google Cloud Run, Git
 - R (Programming Language), Data Structures
 - Teamwork, Problem-solving, Customer focus, Attention to detail
-- Building Maintenance, Catering
 """)
 
 # Jaylan Hunter
@@ -45,19 +37,16 @@ st.write("""
 **Education**: North Carolina Agricultural and Technical State University, B.S. in Computer Science (Aug 2021 - May 2025)
 
 ### About
-I'm a Computer Science student with a strong interest in Cybersecurity. I enjoy problem-solving both independently and collaboratively and am passionate about using my skills to positively impact communities. I've participated in multiple hackathons, recently winning my first at JPMorgan's Data For Good Hackathon. I'm currently interning in the Cyber Futures program at MITRE, where I’m excited to further develop my skills and explore opportunities in Data Science.
+I'm a Computer Science student with a strong interest in Cybersecurity. I enjoy problem-solving both independently and collaboratively and am passionate about using my skills to positively impact communities. My recent projects include utilizing AI tools and models like GPT-4o-mini, developing solutions with OpenAI SDK, and setting up CI/CD pipelines on Google Cloud Run.
 
 ### Experience
 
 - **MITRE Corporation** - Cyber Futures Intern  
-  _Reflecting on my internship, I worked on critical cybersecurity challenges, including engineering solutions to mitigate replay attacks on satellite systems and developing Python scripts for CubeSAT data extraction. Completed the AI for Predictive Analytics Learning Track and participated in MITRE Caldera Training, where I collaborated on cyber adversary emulation using the MITRE ATT&CK framework._
+  _Reflecting on my internship, I worked on critical cybersecurity challenges, including engineering solutions to mitigate replay attacks on satellite systems and developing Python scripts for CubeSAT data extraction. Completed the AI for Predictive Analytics Learning Track and participated in MITRE Caldera Training._
 
-- **JPMorgan's Data For Good Hackathon** - Hackathon Participant and Winner  
-  _Won first place for a project focused on data analysis and social impact._
-
-### Skills
-- Strategic Planning, Critical Thinking
-- Project Planning, Cybersecurity, Python Programming
+### AI & Technical Skills
+- OpenAI SDK, GPT-4o-mini, CI/CD, Google Cloud Run, Git
+- Strategic Planning, Cybersecurity, Python Programming
 - Adversary Emulation, AI for Predictive Analytics, Zero Trust Security
 """)
 
@@ -76,18 +65,35 @@ st.write("""
 
 - **North Carolina Agricultural and Technical State University** - Undergraduate Student Research Assistant  
   _Sep 2023 - Feb 2024 (6 months), Greensboro, North Carolina_  
-  Worked on research writing, LaTeX, and other academic tasks.
+  Conducted research and technical tasks, including AI projects utilizing OpenAI SDK and developing machine learning models with GPT-4o-mini.
 
 - **BJ's Wholesale Club** - Tire Technician  
   _Feb 2023 - Oct 2023 (9 months), Burlington, North Carolina_  
   Responsibilities included tire changing, maintenance, and assisting customers with tire-related services.
 
-- **City Gate Dream Center** - Volunteer  
-  _Dec 2019 - Jun 2021 (1 year, 7 months)_  
-  Assisted with holiday events and drive-through handouts during the pandemic.
+### AI & Technical Skills
+- OpenAI SDK, GPT-4o-mini, CI/CD, Google Cloud Run, Git
+- Virtual Reality (VR) Development, Deep Neural Networks (DNN), Artificial Intelligence (AI)
+- Research Writing, LaTeX, Customer Service
+""")
 
-### Skills
-- Deep Neural Networks (DNN), Artificial Intelligence (AI)
-- Research Writing, LaTeX
-- Customer Service, Tire Maintenance
+# Garrett Galloway
+st.subheader("Garrett Galloway")
+st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/garrett-galloway-786427273/)", unsafe_allow_html=True)
+# st.image("path_to_garrett_image.jpg", width=150)  # Replace with the actual path to Garrett's image
+st.write("""
+**Position**: Student at North Carolina Agricultural and Technical State University
+
+**Education**: North Carolina Agricultural and Technical State University, B.S. in Computer Science (2022 - 2024)
+
+### About
+A dedicated student pursuing a degree in Computer Science, with a focus on AI and cloud-based solutions. Garrett has experience in utilizing OpenAI SDK for AI development, deploying models like GPT-4o-mini, and working with CI/CD and Google Cloud Run for scalable solutions.
+
+### AI & Technical Skills
+- OpenAI SDK, GPT-4o-mini, CI/CD, Google Cloud Run, Git
+- Strategic Thinking, Critical Analysis
+- Academic Writing, Research Skills
+
+### Interests
+- Cyber Security, AI, Backend Development, UI/UX, Tech Trends
 """)
