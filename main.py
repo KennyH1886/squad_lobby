@@ -14,7 +14,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Access the API key using the variable name defined in the .env file
-key = os.getenv("OPENAI_API_KEY")
+key = os.getenv("openai_api_key_squal_lobby")
+
 
 
 
