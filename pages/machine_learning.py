@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
 
 # Sample data
 data = {
@@ -28,39 +30,12 @@ st.write("""
 ### Data Overview
 This dataset represents a student's monthly budget, with categories including Rent, Groceries, Books, Tuition, Entertainment, Transportation, Miscellaneous, and Work-Study Deposits.
 
-We'll apply a basic machine learning model (linear regression) to predict one of the expenses (in this example, "Rent") based on the other features.
+We'll apply machine learning models (Linear Regression and Random Forest) to predict one of the expenses (in this example, "Rent") based on the other features.
 """)
 
 # Display the data
 st.write("### Monthly Budget Data")
 st.dataframe(df)
-
-# Machine Learning Code
-st.write("### Machine Learning Code")
-code = '''
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
-
-# Select features and target variable
-X = df.drop(columns=["Month", "Rent"])
-y = df["Rent"]
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
-
-# Train the model
-model = LinearRegression()
-model.fit(X_train, y_train)
-
-# Make predictions
-y_pred = model.predict(X_test)
-
-# Calculate the mean squared error
-mse = mean_squared_error(y_test, y_pred)
-mse
-'''
-st.code(code, language='python')
 
 # Machine Learning Execution
 st.write("### Machine Learning Execution and Output")
@@ -72,20 +47,37 @@ y = df["Rent"]
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
-# Train the model
-model = LinearRegression()
-model.fit(X_train, y_train)
+# Train and evaluate Linear Regression model
+linear_model = LinearRegression()
+linear_model.fit(X_train, y_train)
+y_pred_linear = linear_model.predict(X_test)
+mse_linear = mean_squared_error(y_test, y_pred_linear)
 
-# Make predictions
-y_pred = model.predict(X_test)
+# Train and evaluate Random Forest Regressor model
+rf_model = RandomForestRegressor(n_estimators=100, random_state=0)
+rf_model.fit(X_train, y_train)
+y_pred_rf = rf_model.predict(X_test)
+mse_rf = mean_squared_error(y_test, y_pred_rf)
 
-# Calculate the mean squared error
-mse = mean_squared_error(y_test, y_pred)
+# Display the Mean Squared Error for each model
+st.write("#### Mean Squared Error")
+st.write(f"Linear Regression Model: {mse_linear}")
+st.write(f"Random Forest Model: {mse_rf}")
 
-# Display the output
-st.write("#### Mean Squared Error of the Model")
-st.write(mse)
-
+# Display predicted vs actual values for Random Forest model
+result_df = pd.DataFrame({"Actual Rent": y_test, "Predicted Rent (Linear)": y_pred_linear, "Predicted Rent (Random Forest)": y_pred_rf})
 st.write("#### Predicted vs Actual Rent Values")
-result_df = pd.DataFrame({"Actual Rent": y_test, "Predicted Rent": y_pred})
 st.dataframe(result_df)
+
+# Plotting the actual vs predicted rent values
+st.write("### Predicted vs Actual Rent Values Visualization")
+
+plt.figure(figsize=(10, 6))
+plt.plot(y_test.values, label='Actual Rent', marker='o', linestyle='-', color='blue')
+plt.plot(y_pred_linear, label='Predicted Rent (Linear Regression)', marker='x', linestyle='--', color='green')
+plt.plot(y_pred_rf, label='Predicted Rent (Random Forest)', marker='s', linestyle=':', color='red')
+plt.xlabel("Data Point Index")
+plt.ylabel("Rent")
+plt.title("Actual vs Predicted Rent Values")
+plt.legend()
+st.pyplot(plt)
