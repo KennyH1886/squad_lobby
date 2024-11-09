@@ -59,9 +59,10 @@ with st.spinner("Generating scenario..."):
 
 
 
+st.write("")
+st.write("")
 
-
-whatiwoulddo = st.text_input("tell us what you would do in this scenario and we will provide feedback.")
+whatiwoulddo = st.text_input("Tell us what you would do in this scenario and we will provide feedback.")
 if st.button("Submit"):
     
     
