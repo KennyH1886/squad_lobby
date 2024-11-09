@@ -20,6 +20,18 @@ chat_completion = client.chat.completions.create(
 response = chat_completion.choices[0].message.content
 print(response)
 ```
+# create image
+```python
+response = client.images.generate(
+        model="dall-e-3",
+        prompt=f"generate an image for a captial one cs hackathon, depicting a diverse CS college student trying to decide how to spend or save money, decide between instant and delayed gratification. just captial one and ncat logos, no other text",
+        size="1024x1024",
+        quality="standard",
+        n=1,
+        )
+image_url = response.data[0].url
+print(image_url)
+```
 # sample cs student income expense record 
 ```python
 import pandas as pd
