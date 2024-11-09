@@ -21,7 +21,7 @@ key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=key)
 
 st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
-st.header("Squad Lobby Budget App!!", divider = 'rainbow')
+st.header("Budget Squad", divider = 'red')
 
 st.image('Capital_One_logo.svg.png')
 
