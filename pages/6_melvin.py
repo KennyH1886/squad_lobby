@@ -5,10 +5,14 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
-key = os.getenv("openai_api_key_squad_lobby")
+# Access the API key using the variable name defined in the .env file
+key = os.getenv("openai_api_key_squal_lobby")
 
-# Initialize OpenAI client
+
+
+
 client = OpenAI(api_key=key)
+
 
 # Caching function to generate scenario text from OpenAI
 @st.cache_data
