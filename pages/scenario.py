@@ -29,20 +29,16 @@ chat_completion = client.chat.completions.create(
     messages=[
         {
             "role": "system",
-            "content": "You are a Capital One budget virtual assistant. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed. "
+            "content": "You are a HBCU fiction author thats popular with the students with a passion for real world finance lessons through your content. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed. "
         },
         {
             "role": "user",
-            "content": f"there is a greatest homecoming on earth cruise happening at an hbcu and a student wants to budget his trip but usually spends all their money partying but really wants ot take this senior trip. Please give a great scenario for this with emojis."
+            "content": f"there is a greatest homecoming on earth cruise happening at an hbcu and a student wants to budget his trip but usually spends all their money partying but really wants ot take this senior trip. Please give a great scenario for this with emojis. dont give budgetary advice just describe a very enticing advice for instant gradificaiton versus delayed , make it very hard for the student to choose"
         }
     ],
     model="gpt-4o-mini",
 )
 scenario = chat_completion.choices[0].message.content
-st.markdown(scenario)
-
-
-
 
 
 response = client.images.generate(
@@ -56,9 +52,16 @@ image_url = response.data[0].url
 st.image(image_url)
 
 
+
+st.markdown(scenario)
+
+
+
+
+
 # st.image('squad-lobby-logo3.png')
 
-question = st.text_input("tell us what you would do in this scenario and we will provide feedback.")
+whatiwoulddo = st.text_input("tell us what you would do in this scenario and we will provide feedback.")
 if st.button("Submit"):
     
     
@@ -72,7 +75,7 @@ if st.button("Submit"):
                 },
                 {
                     "role": "user",
-                    "content": f"{question}"
+                    "content": f"evaluate the student response based on {whatiwoulddo} give constructive feedback but still make it fun."
                 }
             ],
             model="gpt-4o-mini",
