@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 
 
 
-# st.write(password)
 # Load environment variables from .env file
 load_dotenv()
 
@@ -59,9 +58,10 @@ with st.spinner("Generating scenario..."):
 
 
 
-# st.image('squad-lobby-logo3.png')
 
-whatiwoulddo = st.text_input("tell us what you would do in this scenario and we will provide feedback.")
+st.write("")
+st.write("")
+whatiwoulddo = st.text_input("Tell us what you would do in this scenario and we will provide feedback.")
 if st.button("Submit"):
     
     
