@@ -14,8 +14,8 @@ client = OpenAI(api_key=key)
 st.set_page_config(page_title="Squad Lobby", initial_sidebar_state="auto")
 st.header("Scenario One: GHOE Cruise 2025", divider='red')
 
-# Caching scenario and image URL using session state
-if "scenario" not in st.session_state:
+# Caching scenario and image URL using session state specific to Scenario 1
+if "scenario_1" not in st.session_state:
     chat_completion = client.chat.completions.create(
         messages=[
             {
@@ -29,23 +29,22 @@ if "scenario" not in st.session_state:
         ],
         model="gpt-4o-mini",
     )
-    st.session_state["scenario"] = chat_completion.choices[0].message.content
+    st.session_state["scenario_1"] = chat_completion.choices[0].message.content
 
-if "image_url" not in st.session_state:
+if "image_url_1" not in st.session_state:
     response = client.images.generate(
         model="dall-e-3",
-        prompt=f"Generate an image for a Capital One CS hackathon for the scenario: {st.session_state['scenario']}. Depict diverse HBCU students in blue and gold school colors.",
+        prompt=f"Generate an image for a Capital One CS hackathon for the scenario: {st.session_state['scenario_1']}. Depict diverse HBCU students in blue and gold school colors.",
         size="1024x1024",
         quality="standard",
         n=1,
     )
-    st.session_state["image_url"] = response.data[0].url
+    st.session_state["image_url_1"] = response.data[0].url
 
-# Display the scenario and image from session state
+# Display the scenario and image from session state for Scenario 1
 with st.spinner("Gathering scenario..."):
-    st.image(st.session_state["image_url"])
-    st.markdown(st.session_state["scenario"])
-
+    st.image(st.session_state["image_url_1"])
+    st.markdown(st.session_state["scenario_1"])
 
 # Get user input for scenario response
 whatiwoulddo = st.text_input("Tell us what you would do in this scenario and we will provide feedback.")
@@ -81,7 +80,7 @@ client = OpenAI(api_key=key)
 st.set_page_config(page_title="Squad Lobby", initial_sidebar_state="auto")
 st.header("Scenario One: GHOE Cruise 2025", divider='red')
 
-if "scenario" not in st.session_state:
+if "scenario_1" not in st.session_state:
     chat_completion = client.chat.completions.create(
         messages=[
             {"role": "system", "content": "You are a HBCU fiction author..."},
@@ -89,20 +88,20 @@ if "scenario" not in st.session_state:
         ],
         model="gpt-4o-mini",
     )
-    st.session_state["scenario"] = chat_completion.choices[0].message.content
+    st.session_state["scenario_1"] = chat_completion.choices[0].message.content
 
-if "image_url" not in st.session_state:
+if "image_url_1" not in st.session_state:
     response = client.images.generate(
         model="dall-e-3",
-        prompt=f"Generate an image for Capital One hackathon: {st.session_state['scenario']}...",
+        prompt=f"Generate an image for Capital One hackathon: {st.session_state['scenario_1']}...",
         size="1024x1024",
         quality="standard",
         n=1,
     )
-    st.session_state["image_url"] = response.data[0].url
+    st.session_state["image_url_1"] = response.data[0].url
 
-st.markdown(st.session_state["scenario"])
-st.image(st.session_state["image_url"])
+st.markdown(st.session_state["scenario_1"])
+st.image(st.session_state["image_url_1"])
 
 whatiwoulddo = st.text_input("Tell us what you would do...")
 if st.button("Submit"):
