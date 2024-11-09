@@ -3,7 +3,7 @@ import streamlit as st
 st.title("About Us")
 
 st.subheader("Kenny Howard")
-st.image("path_to_kenny_image.jpg", width=150)  # Replace with the actual path to Kenny's image
+# st.image("path_to_kenny_image.jpg", width=150)  # Replace with the actual path to Kenny's image
 st.write("""
 **Position**: R&D Software Engineer (Intern) with a Data Science focus at Sandia National Laboratories
 
@@ -42,7 +42,7 @@ st.write("""
 
 
 st.subheader("Jaylan Hunter")
-st.image("path_to_jaylan_image.jpg", width=150)  # Replace with the actual path to Jaylan's image
+# st.image("path_to_jaylan_image.jpg", width=150)  # Replace with the actual path to Jaylan's image
 st.write("""
 **Position**: Cyber Futures Intern at the MITRE Corporation
 
