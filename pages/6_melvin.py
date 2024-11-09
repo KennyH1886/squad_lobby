@@ -8,11 +8,8 @@ load_dotenv()
 # Access the API key using the variable name defined in the .env file
 key = os.getenv("openai_api_key_squal_lobby")
 
-
-
-
+# Initialize OpenAI client
 client = OpenAI(api_key=key)
-
 
 # Caching function to generate scenario text from OpenAI
 @st.cache_data
@@ -66,17 +63,16 @@ st.set_page_config(page_title="Squad Lobby", initial_sidebar_state="auto")
 st.header("Scenario Four: Car problems", divider='red')
 
 # Use session state to store scenario and image URL so they don’t change after submission
-if "scenario" not in st.session_state:
-    st.session_state["scenario"] = generate_scenario()
+if "scenario_4" not in st.session_state:
+    st.session_state["scenario_4"] = generate_scenario()
 
-if "image_url" not in st.session_state:
-    st.session_state["image_url"] = generate_image(st.session_state["scenario"])
+if "image_url_4" not in st.session_state:
+    st.session_state["image_url_4"] = generate_image(st.session_state["scenario_4"])
 
 # Display the scenario and image from session state
 with st.spinner("Gathering scenario..."):
-    st.image(st.session_state["image_url"])
-    st.markdown(st.session_state["scenario"])
-
+    st.image(st.session_state["image_url_4"])
+    st.markdown(st.session_state["scenario_4"])
 
 # Get user input for scenario response
 whatiwoulddo = st.text_input("Tell us what you would do in this scenario and we will provide feedback.")
@@ -85,7 +81,7 @@ if st.button("Submit"):
         response = get_feedback(whatiwoulddo)
         st.markdown(response)
 
-
+# Display code in Streamlit
 code = """
 import streamlit as st
 from openai import OpenAI
@@ -94,7 +90,7 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
-key = os.getenv("openai_api_key_squad_lobby")
+key = os.getenv("openai_api_key_squal_lobby")
 
 # Initialize OpenAI client
 client = OpenAI(api_key=key)
@@ -151,21 +147,20 @@ st.set_page_config(page_title="Squad Lobby", initial_sidebar_state="auto")
 st.header("Scenario Four: Car problems", divider='red')
 
 # Use session state to store scenario and image URL so they don’t change after submission
-if "scenario" not in st.session_state:
-    st.session_state["scenario"] = generate_scenario()
+if "scenario_4" not in st.session_state:
+    st.session_state["scenario_4"] = generate_scenario()
 
-if "image_url" not in st.session_state:
-    st.session_state["image_url"] = generate_image(st.session_state["scenario"])
+if "image_url_4" not in st.session_state:
+    st.session_state["image_url_4"] = generate_image(st.session_state["scenario_4"])
 
 # Display the scenario and image from session state
-st.markdown(st.session_state["scenario"])
-st.image(st.session_state["image_url"])
+st.markdown(st.session_state["scenario_4"])
+st.image(st.session_state["image_url_4"])
 
-# Get user input for scenario response
-whatiwoulddo = st.text_input("Tell us what you would do in this scenario and we will provide feedback.")
+whatiwoulddo = st.text_input("Tell us what you would do...")
 if st.button("Submit"):
     with st.spinner("Gathering Budgeting Advice..."):
         response = get_feedback(whatiwoulddo)
         st.markdown(response)
-        """
-st.code(code, language = "python")
+"""
+st.code(code, language="python")
