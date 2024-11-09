@@ -2,6 +2,7 @@ import streamlit as st
 
 st.title("About Us")
 
+# Kenny Howard
 st.subheader("Kenny Howard")
 st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/kenhow1/)", unsafe_allow_html=True)
 # st.image("path_to_kenny_image.jpg", width=150)  # Replace with the actual path to Kenny's image
@@ -32,11 +33,9 @@ st.write("""
 - R (Programming Language), Data Structures
 - Teamwork, Problem-solving, Customer focus, Attention to detail
 - Building Maintenance, Catering
-
-### Extracurricular Activities
-- Member of the AI Club at North Carolina State University (2021)
 """)
 
+# Jaylan Hunter
 st.subheader("Jaylan Hunter")
 st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/jaylan-hunter-2436a2225/)", unsafe_allow_html=True)
 # st.image("path_to_jaylan_image.jpg", width=150)  # Replace with the actual path to Jaylan's image
@@ -60,4 +59,35 @@ I'm a Computer Science student with a strong interest in Cybersecurity. I enjoy 
 - Strategic Planning, Critical Thinking
 - Project Planning, Cybersecurity, Python Programming
 - Adversary Emulation, AI for Predictive Analytics, Zero Trust Security
+""")
+
+# Melvin Marin Avelino
+st.subheader("Melvin Marin Avelino")
+st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/melvin-marin-avelino/)", unsafe_allow_html=True)
+# st.image("path_to_melvin_image.jpg", width=150)  # Replace with the actual path to Melvin's image
+st.write("""
+**Position**: Undergraduate Student Research Assistant at North Carolina Agricultural and Technical State University
+
+**Education**: 
+- North Carolina Agricultural and Technical State University, B.S. in Computer Science (Aug 2022 - May 2026)
+- Alamance Community College, Associate of Arts (Sep 2018 - May 2022)
+
+### Experience
+
+- **North Carolina Agricultural and Technical State University** - Undergraduate Student Research Assistant  
+  _Sep 2023 - Feb 2024 (6 months), Greensboro, North Carolina_  
+  Worked on research writing, LaTeX, and other academic tasks.
+
+- **BJ's Wholesale Club** - Tire Technician  
+  _Feb 2023 - Oct 2023 (9 months), Burlington, North Carolina_  
+  Responsibilities included tire changing, maintenance, and assisting customers with tire-related services.
+
+- **City Gate Dream Center** - Volunteer  
+  _Dec 2019 - Jun 2021 (1 year, 7 months)_  
+  Assisted with holiday events and drive-through handouts during the pandemic.
+
+### Skills
+- Deep Neural Networks (DNN), Artificial Intelligence (AI)
+- Research Writing, LaTeX
+- Customer Service, Tire Maintenance
 """)
