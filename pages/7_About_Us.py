@@ -3,6 +3,8 @@ import streamlit as st
 st.title("About Us")
 
 st.subheader("Kenny Howard")
+[LinkedIn Profile](https://www.linkedin.com/in/kenhow1/)
+""", unsafe_allow_html=True)
 # st.image("path_to_kenny_image.jpg", width=150)  # Replace with the actual path to Kenny's image
 st.write("""
 **Position**: R&D Software Engineer (Intern) with a Data Science focus at Sandia National Laboratories
@@ -42,6 +44,9 @@ st.write("""
 
 
 st.subheader("Jaylan Hunter")
+[LinkedIn Profile](https://www.linkedin.com/in/jaylan-hunter-2436a2225/)
+""", unsafe_allow_html=True)
+
 # st.image("path_to_jaylan_image.jpg", width=150)  # Replace with the actual path to Jaylan's image
 st.write("""
 **Position**: Cyber Futures Intern at the MITRE Corporation
@@ -64,5 +69,3 @@ I'm a Computer Science student with a strong interest in Cybersecurity. I enjoy 
 - Project Planning, Cybersecurity, Python Programming
 - Adversary Emulation, AI for Predictive Analytics, Zero Trust Security
 
-[LinkedIn Profile](https://www.linkedin.com/in/jaylan-hunter-2436a2225/)
-""", unsafe_allow_html=True)
