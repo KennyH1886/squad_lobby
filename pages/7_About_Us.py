@@ -87,8 +87,7 @@ st.write("""
 **Education**: North Carolina Agricultural and Technical State University, B.S. in Computer Science (2022 - 2024)
 
 ### About
-A dedicated student pursuing a degree in Computer Science, with a focus on AI and cloud-based solutions. Garrett has experience in utilizing OpenAI SDK for AI development, deploying models like GPT-4o-mini, and working with CI/CD and Google Cloud Run for scalable solutions.
-
+A dedicated student pursuing a degree in Computer Science. Graduating Senior.
 ### AI & Technical Skills
 - OpenAI SDK, GPT-4o-mini, CI/CD, Google Cloud Run, Git
 - Strategic Thinking, Critical Analysis
