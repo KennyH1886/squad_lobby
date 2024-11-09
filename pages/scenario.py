@@ -24,9 +24,30 @@ client = OpenAI(api_key=key)
 st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
 st.header("Scenario One", divider = 'red')
 
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "system",
+            "content": "You are a Capital One budget virtual assistant. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed. "
+        },
+        {
+            "role": "user",
+            "content": f"there is a greatest homecoming on earth cruise happening at an hbcu and a student wants to budget his trip but usually spends all their money partying but really wants ot take this senior trip. Please give a great scenario for this with emojis."
+        }
+    ],
+    model="gpt-4o-mini",
+)
+scenario = chat_completion.choices[0].message.content
+st.markdown(scenario)
+
+
+
+
+
 response = client.images.generate(
         model="dall-e-3",
-        prompt=f"generate an image for a captial one cs hackathon, depicting a diverse CS college student trying to decide how to spend or save money, decide between instant and delayed gratification. just captial one and ncat logos, no other text",
+        prompt=f"generate an image for a captial one cs hackathon, for the following scenario {scenario}. Make sure diverse HBCU student are depicted in the image with blue and gold school colors.",
         size="1024x1024",
         quality="standard",
         n=1,
@@ -37,7 +58,7 @@ st.image(image_url)
 
 # st.image('squad-lobby-logo3.png')
 
-question = st.text_input("Ask your questions for budget help!")
+question = st.text_input("tell us what you would do in this scenario and we will provide feedback.")
 if st.button("Submit"):
     
     
