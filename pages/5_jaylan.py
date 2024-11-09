@@ -1,81 +1,63 @@
 import streamlit as st
-import streamlit as st
 from openai import OpenAI
-import time
-import base64
-from io import BytesIO
 import os
 from dotenv import load_dotenv
 
-
-
-
 # Load environment variables from .env file
 load_dotenv()
-
 # Access the API key using the variable name defined in the .env file
 key = os.getenv("openai_api_key_squal_lobby")
 
-
-
-
+# Initialize OpenAI client
 client = OpenAI(api_key=key)
 
-st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
-st.header("Scenario Three: Spring Break Vacay", divider = 'red')
+st.set_page_config(page_title="Squad Lobby", initial_sidebar_state="auto")
+st.header("Scenario Three: Spring Break Vacay", divider='red')
 
-with st.spinner("Generating scenario..."):
+# Caching scenario and image URL using session state
+if "scenario" not in st.session_state:
     chat_completion = client.chat.completions.create(
         messages=[
             {
                 "role": "system",
-                "content": "You are a HBCU fiction author thats popular with the students with a passion for real world finance lessons through your content. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed. "
+                "content": "You are a HBCU fiction author popular with students, passionate about real-world finance lessons through your content. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed."
             },
             {
                 "role": "user",
-                "content": f" A group of friends that attend North Carolina A&T are planning a Spring Break trip to Turks and Caicos. They have been planning this trip out a year in advance. Please give a great scenario for this with emojis. dont give budgetary advice just describe a very enticing advice for instant gradificaiton versus delayed , make it very hard for the student to choose"
+                "content": "A group of friends attending North Carolina A&T are planning a Spring Break trip to Turks and Caicos. They have been planning this trip for a year. Please give a great scenario for this with emojis. Don’t give budgetary advice, just describe an enticing choice between instant gratification and delayed gratification, making it hard for the students to choose."
             }
         ],
         model="gpt-4o-mini",
     )
-    scenario = chat_completion.choices[0].message.content
-    
-    
+    st.session_state["scenario"] = chat_completion.choices[0].message.content
+
+if "image_url" not in st.session_state:
     response = client.images.generate(
-            model="dall-e-3",
-            prompt=f"generate an image for a captial one cs hackathon, for the following scenario {scenario}. Make sure diverse HBCU student are depicted in the image with blue and gold school colors.",
-            size="1024x1024",
-            quality="standard",
-            n=1,
-            )
-    image_url = response.data[0].url
-    st.image(image_url)
-    
-    
-    
-    st.markdown(scenario)
+        model="dall-e-3",
+        prompt=f"Generate an image for a Capital One CS hackathon for the scenario: {st.session_state['scenario']}. Depict diverse HBCU students in blue and gold school colors.",
+        size="1024x1024",
+        quality="standard",
+        n=1,
+    )
+    st.session_state["image_url"] = response.data[0].url
 
+# Display the scenario and image from session state
+st.markdown(st.session_state["scenario"])
+st.image(st.session_state["image_url"])
 
-
-
-
-
-
-whatiwoulddo = st.text_input("tell us what you would do in this scenario and we will provide feedback.")
+# Get user input for scenario response
+whatiwoulddo = st.text_input("Tell us what you would do in this scenario and we will provide feedback.")
 if st.button("Submit"):
-    
-    
-    
     with st.spinner("Gathering Budgeting Advice..."):
         chat_completion = client.chat.completions.create(
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a Capital One budget virtual assistant. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed. make sure oyu show dollars and cents , numbers and calculations for a years worth of budgeting , always show a very good and very bad example."
+                    "content": "You are a Capital One budget virtual assistant for the 'Breaking the Piggy Bank' event. Be helpful and kind. This is for CS students, so use emojis when needed. Show dollars, cents, numbers, and calculations for a year's budget, always with a very good and very bad example."
                 },
                 {
                     "role": "user",
-                    "content": f"evaluate the student response based on {whatiwoulddo} give constructive feedback but still make it fun."
+                    "content": f"Evaluate the student's response based on '{whatiwoulddo}' and provide constructive feedback, making it fun."
                 }
             ],
             model="gpt-4o-mini",
@@ -87,83 +69,65 @@ if st.button("Submit"):
 
 code = """
 import streamlit as st
-import streamlit as st
 from openai import OpenAI
-import time
-import base64
-from io import BytesIO
 import os
 from dotenv import load_dotenv
 
-
-
-
 # Load environment variables from .env file
 load_dotenv()
-
 # Access the API key using the variable name defined in the .env file
 key = os.getenv("openai_api_key_squal_lobby")
 
-
-
-
+# Initialize OpenAI client
 client = OpenAI(api_key=key)
 
-st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
-st.header("Scenario One: GHOE Cruise 2025", divider = 'red')
+st.set_page_config(page_title="Squad Lobby", initial_sidebar_state="auto")
+st.header("Scenario Three: Spring Break Vacay", divider='red')
 
-with st.spinner("Generating scenario..."):
+# Caching scenario and image URL using session state
+if "scenario" not in st.session_state:
     chat_completion = client.chat.completions.create(
         messages=[
             {
                 "role": "system",
-                "content": "You are a HBCU fiction author thats popular with the students with a passion for real world finance lessons through your content. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed. "
+                "content": "You are a HBCU fiction author popular with students, passionate about real-world finance lessons through your content. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed."
             },
             {
                 "role": "user",
-                "content": f"there is a greatest homecoming on earth cruise happening at an hbcu and a student wants to budget his trip but usually spends all their money partying but really wants ot take this senior trip. Please give a great scenario for this with emojis. dont give budgetary advice just describe a very enticing advice for instant gradificaiton versus delayed , make it very hard for the student to choose"
+                "content": "A group of friends attending North Carolina A&T are planning a Spring Break trip to Turks and Caicos. They have been planning this trip for a year. Please give a great scenario for this with emojis. Don’t give budgetary advice, just describe an enticing choice between instant gratification and delayed gratification, making it hard for the students to choose."
             }
         ],
         model="gpt-4o-mini",
     )
-    scenario = chat_completion.choices[0].message.content
-    
-    
+    st.session_state["scenario"] = chat_completion.choices[0].message.content
+
+if "image_url" not in st.session_state:
     response = client.images.generate(
-            model="dall-e-3",
-            prompt=f"generate an image for a captial one cs hackathon, for the following scenario {scenario}. Make sure diverse HBCU student are depicted in the image with blue and gold school colors.",
-            size="1024x1024",
-            quality="standard",
-            n=1,
-            )
-    image_url = response.data[0].url
-    st.image(image_url)
-    
-    
-    
-    st.markdown(scenario)
+        model="dall-e-3",
+        prompt=f"Generate an image for a Capital One CS hackathon for the scenario: {st.session_state['scenario']}. Depict diverse HBCU students in blue and gold school colors.",
+        size="1024x1024",
+        quality="standard",
+        n=1,
+    )
+    st.session_state["image_url"] = response.data[0].url
 
+# Display the scenario and image from session state
+st.markdown(st.session_state["scenario"])
+st.image(st.session_state["image_url"])
 
-
-
-
-
-
+# Get user input for scenario response
 whatiwoulddo = st.text_input("Tell us what you would do in this scenario and we will provide feedback.")
 if st.button("Submit"):
-    
-    
-    
     with st.spinner("Gathering Budgeting Advice..."):
         chat_completion = client.chat.completions.create(
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a Capital One budget virtual assistant. You are part of the 'Breaking the Piggy Bank, Reviving Personal Budgeting in the Virtual World' event. Be helpful and kind. This is for CS students, so use emojis when needed. make sure oyu show dollars and cents , numbers and calculations for a years worth of budgeting , always show a very good and very bad example."
+                    "content": "You are a Capital One budget virtual assistant for the 'Breaking the Piggy Bank' event. Be helpful and kind. This is for CS students, so use emojis when needed. Show dollars, cents, numbers, and calculations for a year's budget, always with a very good and very bad example."
                 },
                 {
                     "role": "user",
-                    "content": f"evaluate the student response based on {whatiwoulddo} give constructive feedback but still make it fun."
+                    "content": f"Evaluate the student's response based on '{whatiwoulddo}' and provide constructive feedback, making it fun."
                 }
             ],
             model="gpt-4o-mini",
