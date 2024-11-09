@@ -22,7 +22,7 @@ key = os.getenv("openai_api_key_squal_lobby")
 client = OpenAI(api_key=key)
 
 st.set_page_config(page_title="Squad Lobby",  initial_sidebar_state="auto")
-st.header("Scenario Four:"Car problems, divider = 'red')
+st.header("Scenario Four:"Car problems", divider = 'red')
 
 with st.spinner("Generating scenario..."):
     chat_completion = client.chat.completions.create(
