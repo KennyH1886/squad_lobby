@@ -17,9 +17,6 @@ st.write("""
   _May 2024 - Present (7 months), Albuquerque, New Mexico_  
   Internship role focused on R&D with an emphasis on data science projects and AI development, including integration with OpenAI SDK and model training using GPT-4o-mini.
 
-- **Harris Teeter** - Fresh Foods Associate  
-  _June 2023 - Aug 2023 (3 months), Fayetteville, North Carolina_  
-  Provided customer service, completed deli orders, and collaborated with a diverse team in a fast-paced environment.
 
 ### AI & Technical Skills
 - OpenAI SDK, GPT-4o-mini, CI/CD, Google Cloud Run, Git
@@ -34,7 +31,7 @@ st.markdown("[LinkedIn Profile](https://www.linkedin.com/in/jaylan-hunter-2436a2
 st.write("""
 **Position**: Cyber Futures Intern at the MITRE Corporation
 
-**Education**: North Carolina Agricultural and Technical State University, B.S. in Computer Science (Aug 2021 - May 2025)
+**Education**: North Carolina Agricultural and Technical State University, B.S. in Computer Science (Aug 2021 - Dec 2025)
 
 ### About
 I'm a Computer Science student with a strong interest in Cybersecurity. I enjoy problem-solving both independently and collaboratively and am passionate about using my skills to positively impact communities. My recent projects include utilizing AI tools and models like GPT-4o-mini, developing solutions with OpenAI SDK, and setting up CI/CD pipelines on Google Cloud Run.
