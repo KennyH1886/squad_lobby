@@ -65,7 +65,7 @@ st.write(f"Linear Regression Model: {mse_linear}")
 st.write(f"Random Forest Model: {mse_rf}")
 
 # Display predicted vs actual values for Random Forest model
-result_df = pd.DataFrame({"Actual Rent": y_test, "Predicted Rent (Linear)": y_pred_linear, "Predicted Rent (Random Forest)": y_pred_rf})
+result_df = pd.DataFrame({"Actual Rent": y_test,  "Predicted Rent (Random Forest)": y_pred_rf})
 st.write("#### Predicted vs Actual Rent Values")
 st.dataframe(result_df)
 
